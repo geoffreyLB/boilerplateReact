@@ -1,16 +1,12 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 
-// store
-import { Provider } from 'react-redux';
-import store from './store/store';
+import { render } from 'react-dom';
 
-//routes
-import AppRoutes from './routes';
+import RootContainers from './containers/App';
+import rootReducer from './reducers';
+import { configureStore } from './store';
 
-ReactDOM.render(
-    <Provider store={store}>
-        <AppRoutes />
-    </Provider>,
-    document.getElementById('root'),
-);
+const store = configureStore(rootReducer);
+const rootElement = document.getElementById('root');
+
+render(<RootContainers {...{ store }} />, rootElement);

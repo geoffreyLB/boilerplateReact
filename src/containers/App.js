@@ -1,32 +1,27 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Provider } from 'react-redux';
 
-import InputPreview from '../components/InputPreview';
-import { setMessage } from '../actions/message';
+import AppRoutes from '../routes';
 
 type Props = {
-    messageReducer: '',
-    dispatch: () => void,
+    store: Object,
+    history: History,
 };
 
-class App extends Component<Props> {
-    _onChange = value => {
-        this.props.dispatch(setMessage(value));
-    };
+export default class App extends Component<Props> {
+    props: Props;
+
+    constructor(props: Props) {
+        super(props);
+    }
 
     render() {
-        const { message } = this.props.messageReducer;
+        const { props: { store } } = this;
 
         return (
-            <div>
-                <InputPreview value={message} onChange={this._onChange} />
-                <Link to="/about">
-                    <button>Go to About</button>
-                </Link>
-            </div>
+            <Provider {...{ store }}>
+                <AppRoutes />
+            </Provider>
         );
     }
 }
-
-export default connect(state => state)(App);
