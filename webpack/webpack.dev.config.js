@@ -1,4 +1,5 @@
 import { join, resolve } from 'path';
+import FriendlyErrorsWebpackPlugin from 'friendly-errors-webpack-plugin';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import { HotModuleReplacementPlugin } from 'webpack';
 
@@ -7,6 +8,7 @@ const BUILD_DIR = resolve(__dirname, '..', 'src');
 const HTML_DIR = resolve(__dirname, '..', 'public');
 
 const plugins = [
+    new FriendlyErrorsWebpackPlugin(),
     new HotModuleReplacementPlugin(),
     new HtmlWebpackPlugin({
         hash: true,
@@ -16,6 +18,7 @@ const plugins = [
 
 export default {
     entry: resolve(BUILD_DIR, 'index.js'),
+    devtool: 'cheap-module-source-map',
     devServer: {
         contentBase: HTML_DIR,
         historyApiFallback: true,
