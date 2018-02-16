@@ -1,10 +1,10 @@
 import React from 'react';
-import { BrowserRouter, Route, Switch, Link } from 'react-router-dom';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
 import App from './containers/home/HomeContainer';
 import About from './containers/about/AboutContainer';
 
-export default () => {
+export const routes = () => {
     return (
         <BrowserRouter>
             <Switch>
@@ -14,3 +14,5 @@ export default () => {
         </BrowserRouter>
     );
 };
+
+export default routes;
