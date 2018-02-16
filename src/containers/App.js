@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 import InputPreview from '../components/InputPreview';
-import { connect } from 'react-redux';
 import { setMessage } from '../actions/message';
 
 type Props = {
@@ -17,7 +18,14 @@ class App extends Component<Props> {
     render() {
         const { message } = this.props.messageReducer;
 
-        return <InputPreview value={message} onChange={this._onChange} />;
+        return (
+            <div>
+                <InputPreview value={message} onChange={this._onChange} />
+                <Link to="/about">
+                    <button>Go to About</button>
+                </Link>
+            </div>
+        );
     }
 }
 

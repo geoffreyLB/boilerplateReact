@@ -5,12 +5,12 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import store from './store/store';
 
-// main app
-import App from './containers/App';
+//routes
+import AppRoutes from './routes';
 
 ReactDOM.render(
     <Provider store={store}>
-        <App />
+        <AppRoutes />
     </Provider>,
     document.getElementById('root'),
 );
