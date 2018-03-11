@@ -1,18 +1,20 @@
 import React, { Component } from 'react';
+import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 import InputPreview from '../../components/InputPreview';
-import { setMessage } from '../../actions/message';
+import * as messagesAction from '../../actions/message';
 
 type Props = {
     message: '',
     dispatch: () => void,
+    getMessages: () => void,
 };
 
 class HomeContainer extends Component<Props> {
     _onChange = value => {
-        this.props.dispatch(setMessage(value));
+        this.props.getMessages(value);
     };
 
     render() {
@@ -33,4 +35,8 @@ const mapStateToProps = ({ message: { message } }) => ({
     message,
 });
 
-export default connect(mapStateToProps, null)(HomeContainer);
+const mapDispatchToProps = dispatch => ({
+    getMessages: bindActionCreators(messagesAction.setMessage, dispatch),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(HomeContainer);
